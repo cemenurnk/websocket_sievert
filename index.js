@@ -1,12 +1,12 @@
 import express from "express"
-import { createServer } from  'node:http'
+import { createServer } from 'node:http'
 import { Server } from 'socket.io'
 import { config } from 'dotenv'
 
 config()
 
 const app = express()
-const server = createServer()
+const server = createServer(app)
 const io = new Server(server, {
   cors: {
     origin: '*'
