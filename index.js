@@ -1,9 +1,11 @@
+import express from "express"
 import { createServer } from  'node:http'
 import { Server } from 'socket.io'
 import { config } from 'dotenv'
 
 config()
 
+const app = express()
 const server = createServer()
 const io = new Server(server, {
   cors: {
@@ -12,6 +14,10 @@ const io = new Server(server, {
 })
 
 const port = process.env.PORT || 3000
+
+app.get('/', (req, res) => {
+  res.send('<h1>Websocket Sievert</h1>')
+})
 
 io.on("connection", (socket) => {
 
