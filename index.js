@@ -15,8 +15,19 @@ const io = new Server(server, {
 
 const port = process.env.PORT || 3000
 
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
+
 app.get('/', (req, res) => {
   res.send('<h1>Websocket Sievert</h1>')
+})
+
+app.post('/sys_medi_10', (req, res) => {
+  
+  console.log(req.body)
+  io.emit("create_sysmedi10_workflow", req.body)
+
+  res.status(200).json({resultid: "success"})
 })
 
 io.on("connection", (socket) => {
