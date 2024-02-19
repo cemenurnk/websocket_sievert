@@ -34,8 +34,13 @@ io.on("connection", (socket) => {
 
   console.log("usuario conectado")
 
-  socket.on('sysmedi10_workflow_ondrop', (data) => {
-    io.emit('sysmedi10_workflow_ondrop', data)
+  socket.on('ondrop_sysmedi10_workflow', (data) => {
+    io.emit('ondrop_sysmedi10_workflow', data)
+    console.log(data)
+  })
+
+  socket.on('hide_sysmedi10_workflow', (data) => {
+    io.emit('hide_sysmedi10_workflow', data)
     console.log(data)
   })
 
