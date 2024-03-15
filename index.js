@@ -34,15 +34,36 @@ io.on("connection", (socket) => {
 
   console.log("usuario conectado")
 
-  socket.on('ondrop_sysmedi10_workflow', (data) => {
-    io.emit('ondrop_sysmedi10_workflow', data)
-    console.log(data)
+  const events = [
+    //Trajetas del workflow
+    {name: "ondrop_sysmedi10_workflow"},
+    {name: "hide_sysmedi10_workflow"},
+    //Etiquetas del workflow
+    {name: "insert_sysmedi28_workflow"},
+    {name: "delete_sysmedi28_workflow"},
+    {name: "insert_sysmedi27_workflow"},
+    {name: "update_sysmedi27_workflow"}
+  ]
+
+  //Renderizado dinámico de event listeners
+  events.forEach(event => {
+    socket.on(event.name, (data) =>{
+      io.emit(event.name, data)
+      console.log(event.name, " => ", data)
+    })
   })
 
-  socket.on('hide_sysmedi10_workflow', (data) => {
-    io.emit('hide_sysmedi10_workflow', data)
-    console.log(data)
-  })
+  //tarjetas del workflow
+
+  // socket.on('ondrop_sysmedi10_workflow', (data) => {
+  //   io.emit('ondrop_sysmedi10_workflow', data)
+  //   console.log(data)
+  // })
+
+  // socket.on('hide_sysmedi10_workflow', (data) => {
+  //   io.emit('hide_sysmedi10_workflow', data)
+  //   console.log(data)
+  // })
 
   socket.on("disconnect", ()=>{
     console.log("usuario desconectado")
