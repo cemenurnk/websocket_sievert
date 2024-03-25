@@ -30,6 +30,14 @@ app.post('/sys_medi_10', (req, res) => {
   res.status(200).json({resultid: "success"})
 })
 
+app.post('/sys_medi_10/hide', (req, res) => {
+
+  console.log(req.body)
+  io.emit("hide_sysmedi10_workflow", req.body)
+
+  res.status(200).json({resultid: "success"})
+})
+
 io.on("connection", (socket) => {
 
   console.log("usuario conectado")
