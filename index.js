@@ -45,6 +45,7 @@ io.on("connection", (socket) => {
   const events = [
     //Trajetas del workflow
     {name: "ondrop_sysmedi10_workflow"},
+    {name: "rollback_ondrop_sysmedi10_workflow"},
     {name: "hide_sysmedi10_workflow"},
     {name: "update_sysmedi10_workflow"},
     //Etiquetas del workflow
