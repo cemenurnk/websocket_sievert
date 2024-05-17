@@ -4,6 +4,7 @@ import { Server } from 'socket.io'
 import { config } from 'dotenv'
 import sysMedi10Router from "./routes/sysmedi10.routes.js"
 import sysAgen02Router from "./routes/sysagen02.routes.js"
+import sysMedi07Router from "./routes/sysmedi07.routes.js"
 import sysMedi10Events from "./events/sysmedi10.events.js"
 
 config()
@@ -25,6 +26,7 @@ app.get('/', (req, res) => {
   res.send('<h1>Websocket Sievert</h1>')
 })
 
+app.use("/sys_medi_07", sysMedi07Router)
 app.use("/sys_medi_10", sysMedi10Router)
 app.use("/sys_agen_02", sysAgen02Router)
 
